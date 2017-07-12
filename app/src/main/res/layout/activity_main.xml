@@ -3,10 +3,15 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
     <com.example.a001.swipelistview.views.SwipeListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id = "@+id/list_view">
+        android:id = "@+id/list_view"
+        android:animateLayoutChanges="true"
+        android:dividerHeight="1dp"
+        android:divider="@android:color/darker_gray">
     </com.example.a001.swipelistview.views.SwipeListView>
 </LinearLayout>

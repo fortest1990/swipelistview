@@ -84,9 +84,9 @@ public class SwipeListViewAdapter extends ArrayAdapter<String> {
     }
 
      class ViewHolder{
-        LinearLayout bt1;
-        Button bt2;
-        Button bt3;
+         LinearLayout bt1;
+         Button bt2;
+         Button bt3;
          TextView tv;
     }
 

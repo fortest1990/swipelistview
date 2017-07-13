@@ -1,7 +1,6 @@
 package com.example.a001.swipelistview;
 
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivity";
     private List<String> list = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG,"MainActivity onCreate");
         final SwipeListView swipeListView = (SwipeListView)findViewById(R.id.list_view);
-        for(int i=0;i<12;i++){
+        for(int i=0;i<30;i++){
             String string = "我是一串字符"+i;
             list.add(string);
         }

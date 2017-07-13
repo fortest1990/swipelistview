@@ -9,11 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 
-public class SlideView extends FrameLayout {
+public class SlideView extends LinearLayout {
     //用于存储到底是哪个view在listview处于展开状态，只能一个view处于展开状态
     public static boolean isViewOpen;
     public static int openItemPosition;
@@ -52,6 +52,7 @@ public class SlideView extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
         View firstChild = getChildAt(0);
         int  topMargin = getMarginTop(firstChild);
         int width = 0;
@@ -62,6 +63,7 @@ public class SlideView extends FrameLayout {
         }
         setMeasuredDimension(width, height);
         Log.d(TAG,"onMeasure");
+
     }
 
     @Override

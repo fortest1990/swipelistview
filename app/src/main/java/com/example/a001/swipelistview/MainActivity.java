@@ -1,13 +1,11 @@
 package com.example.a001.swipelistview;
 
-import android.content.Intent;
+
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.example.a001.swipelistview.adapters.SwipeListViewAdapter;
 import com.example.a001.swipelistview.views.SlideView;
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final SwipeListView swipeListView = (SwipeListView)findViewById(R.id.list_view);
-        for(int i=0;i<50;i++){
+        for(int i=0;i<12;i++){
             String string = "我是一串字符"+i;
             list.add(string);
         }
@@ -36,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDelete(final int position, View v) {
                 final SlideView slideView = (SlideView)v;
-                list.remove(position);
                 swipeListView.setInterceptTouchEventWhenDeleting(true);
                 Log.d(TAG,"position" + position);
                 slideView.setOnAnimationEndListener(new SlideView.OnAnimationEndListener() {
                     @Override
                     public void run() {
+                        list.remove(position);
                         adapter.notifyDataSetChanged();
                         swipeListView.setInterceptTouchEventWhenDeleting(false);
                     }

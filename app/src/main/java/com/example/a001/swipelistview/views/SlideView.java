@@ -49,6 +49,8 @@ public class SlideView extends FrameLayout {
 
     private boolean isFirstLayout = false;
 
+    private boolean isFirstUpdate = false;
+
     private OnAnimationEndListener mListener;
 
     public SlideView(Context context) {
@@ -204,6 +206,7 @@ public class SlideView extends FrameLayout {
     }
 
     public void deleteItem(){
+        isFirstUpdate = true;
         final View view = getChildAt(0);
         final MarginLayoutParams params = (MarginLayoutParams)view.getLayoutParams();
         ValueAnimator valueAnimator = ValueAnimator.ofInt(0,-view.getMeasuredHeight());
@@ -226,7 +229,7 @@ public class SlideView extends FrameLayout {
             public void onAnimationEnd(Animator animation) {
                 fastCloseItem();
                 ValueAnimator animator = ValueAnimator.ofInt(10,0);
-                animator.setDuration(1);
+                animator.setDuration(10);
                 animator.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -252,8 +255,10 @@ public class SlideView extends FrameLayout {
                 animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        if((int)animation.getAnimatedValue() < 2){
+                        if((int)animation.getAnimatedValue() <2 && isFirstUpdate){
                             mListener.run();
+                            Log.i(TAG,"value =" + animation.getAnimatedValue());
+                            isFirstUpdate = false;
                         }
                     }
                 });
@@ -270,7 +275,7 @@ public class SlideView extends FrameLayout {
 
             }
         });
-        valueAnimator.setDuration(420);
+        valueAnimator.setDuration(400);
         valueAnimator.start();
 
     }

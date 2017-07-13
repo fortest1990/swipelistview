@@ -5,12 +5,36 @@
     android:layout_height="match_parent"
     android:focusable="false"
     android:background="@android:color/white">
-    <Button
+    <LinearLayout
         android:id="@+id/bt1"
         android:focusable="false"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/bt_selector"/>
+        android:background="@drawable/bt_selector"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src = "@mipmap/ic_launcher"/>
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_light"
+                android:text ="英俊黄小虎"
+                android:textSize="16dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt2"

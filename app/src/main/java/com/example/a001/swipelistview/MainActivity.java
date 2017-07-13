@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
             public void onDelete(final int position, View v) {
                 final SlideView slideView = (SlideView)v;
                 list.remove(position);
+                swipeListView.setInterceptTouchEventWhenDeleting(true);
                 Log.d(TAG,"position" + position);
                 slideView.setOnAnimationEndListener(new SlideView.OnAnimationEndListener() {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
+                        swipeListView.setInterceptTouchEventWhenDeleting(false);
                     }
                 });
             }

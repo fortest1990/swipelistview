@@ -1,19 +1,17 @@
 package com.example.a001.swipelistview.views;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
 
 public class SwipeListView extends ListView {
 
     private static final String TAG = "SwipeListView";
+
+    private boolean interceptTouchEvent;
 
     public SwipeListView(Context context) {
         super(context);
@@ -29,6 +27,14 @@ public class SwipeListView extends ListView {
 
     public SwipeListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(interceptTouchEvent){
+            return false;
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override
@@ -61,5 +67,7 @@ public class SwipeListView extends ListView {
         }
         return super.onInterceptTouchEvent(ev);
     }
-
+    public void setInterceptTouchEventWhenDeleting(boolean b){
+        interceptTouchEvent = b;
+    }
 }

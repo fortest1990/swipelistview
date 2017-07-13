@@ -8,17 +8,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.BounceInterpolator;
-import android.widget.AbsListView;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.Scroller;
 
 
@@ -53,26 +44,8 @@ public class SlideView extends FrameLayout {
 
     private OnAnimationEndListener mListener;
 
-    public SlideView(Context context) {
-        super(context);
-        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mScroller = new Scroller(context);
-    }
-
     public SlideView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mScroller = new Scroller(context);
-    }
-
-    public SlideView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mScroller = new Scroller(context);
-    }
-
-    public SlideView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mScroller = new Scroller(context);
     }
@@ -164,12 +137,11 @@ public class SlideView extends FrameLayout {
                 currX = (int)event.getX();
                 int dx = currX - lastX;
                 //控制view随手指移动，防止越界
-                if(scrollX< bound && scrollX >= 0){
-                    scrollBy(-dx,0);
-                    Log.d(TAG,"onMove");
-                }else if (scrollX >= bound && dx > 0 ){
-                    scrollBy(-dx,0);
-                }else if(scrollX < 0 && dx  < 0){
+                if(scrollX - dx > bound ){
+                    scrollBy(bound-scrollX,0);
+                }else if(scrollX-dx < 0) {
+                    scrollBy(-scrollX,0);
+                }else {
                     scrollBy(-dx,0);
                 }
                 break;
